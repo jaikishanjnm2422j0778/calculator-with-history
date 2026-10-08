@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A clean, responsive calculator built with HTML, CSS and vanilla JavaScript.">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <h1 class="visually-hidden">Calculator</h1>
+
+    <section class="calculator" aria-label="Calculator">
+      <!-- Toolbar: opens the history panel -->
+      <div class="toolbar">
+        <button type="button" class="history-toggle" id="history-toggle" aria-expanded="false" aria-controls="history-panel">
+          <svg class="history-toggle__icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+            <path d="M3 4v5h5"></path>
+            <path d="M12 7v5l3 2"></path>
+          </svg>
+          <span>History</span>
+        </button>
+      </div>
+
+      <!-- Display: previous calculation on top, current number below -->
+      <div class="display" role="group" aria-label="Display">
+        <div class="display__expression" id="expression"></div>
+        <output class="display__result" id="result" aria-live="polite" data-size="lg">0</output>
+      </div>
+
+      <!-- Keypad: every button describes itself with data-action / data-value -->
+      <div class="keypad" role="group" aria-label="Calculator keys">
+        <button type="button" class="key key--clear" data-action="clear" aria-label="Clear all">AC</button>
+        <button type="button" class="key key--function key--delete" data-action="delete" aria-label="Delete last digit">DEL</button>
+        <button type="button" class="key key--function" data-action="percent" aria-label="Percent">%</button>
+        <button type="button" class="key key--operator" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
+
+        <button type="button" class="key key--number" data-action="number" data-value="7">7</button>
+        <button type="button" class="key key--number" data-action="number" data-value="8">8</button>
+        <button type="button" class="key key--number" data-action="number" data-value="9">9</button>
+        <button type="button" class="key key--operator" data-action="operator" data-value="×" aria-label="Multiply">×</button>
+
+        <button type="button" class="key key--number" data-action="number" data-value="4">4</button>
+        <button type="button" class="key key--number" data-action="number" data-value="5">5</button>
+        <button type="button" class="key key--number" data-action="number" data-value="6">6</button>
+        <button type="button" class="key key--operator" data-action="operator" data-value="−" aria-label="Subtract">−</button>
+
+        <button type="button" class="key key--number" data-action="number" data-value="1">1</button>
+        <button type="button" class="key key--number" data-action="number" data-value="2">2</button>
+        <button type="button" class="key key--number" data-action="number" data-value="3">3</button>
+        <button type="button" class="key key--operator" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+        <button type="button" class="key key--function" data-action="sign" aria-label="Toggle positive or negative">±</button>
+        <button type="button" class="key key--number" data-action="number" data-value="0">0</button>
+        <button type="button" class="key key--number" data-action="number" data-value="." aria-label="Decimal point">.</button>
+        <button type="button" class="key key--equals" data-action="equals" aria-label="Equals">=</button>
+      </div>
+
+      <!-- History panel: slides over the calculator while open -->
+      <div class="history" id="history-panel" role="region" aria-label="Calculation history" hidden>
+        <div class="history__header">
+          <h2 class="history__title">History</h2>
+          <div class="history__actions">
+            <button type="button" class="history__button" id="history-clear">Clear</button>
+            <button type="button" class="history__button" id="history-close" aria-label="Close history">Close</button>
+          </div>
+        </div>
+        <p class="history__empty" id="history-empty">No calculations yet.<br>Press = to save one here.</p>
+        <ul class="history__list" id="history-list"></ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
